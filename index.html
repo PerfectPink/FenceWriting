@@ -14,7 +14,7 @@
     <div class="main-window">
         <form action="">
             <input id="formSearch" type="text" placeholder="search(in development)">
-            <input id="formDescription" type="text" placeholder="description">
+            <input id="formDescription" type="text" placeholder="message(max 300 ch.)" maxlength="300">
            
 
         </form>
@@ -96,7 +96,6 @@
     function checkusername() {
         if (window.localStorage.username == undefined || window.localStorage.username == null || window.localStorage.username == "null") {
             let username = prompt('Enter your nickname or name', 'Nameless');
-            //проверка на вшивость пользователя
             window.localStorage.setItem('username', username);
         }
     }
@@ -146,7 +145,7 @@
         let container = document.getElementById('divOutput'); 
         let template = document.getElementById('message-temp').innerHTML;
         container.innerHTML = "";
-            for(let i = 0; i < dbarr.length; i++){
+            for(let i = dbarr.length; i > 0; i--){
                 container.innerHTML += template.replace('---username',dbarr[i]['title'])
                                     .replace('---message',dbarr[i]['description'])
             }
