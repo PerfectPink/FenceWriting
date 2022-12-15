@@ -95,14 +95,9 @@
 <script defer>
     function checkusername() {
         if (window.localStorage.username == undefined || window.localStorage.username == null || window.localStorage.username == "null") {
-            console.log(localStorage.getItem['username'], typeof localStorage.getItem['username']);
             let username = prompt('Enter your nickname or name', 'Nameless');
             //проверка на вшивость пользователя
             window.localStorage.setItem('username', username);
-            console.log(localStorage.getItem('username'));
-            console.log('settedusername');
-        } else {
-            console.log('already exist username');
         }
     }
 
@@ -126,7 +121,6 @@
             let xhr = new XMLHttpRequest();
             xhr.open('GET', postResponse, false);
             xhr.send()
-            console.log('Added!');
             renderPosts();
         }
 
@@ -135,7 +129,7 @@
     function searchPost() {
         let searchItem = document.getElementById('formSearch').value;
         let url = 'https://MakingAndSearchPosts.perfectpink.repl.co/?search='
-        let xhr = XMLHttpRequest('GET',)
+        let xhr = XMLHttpRequest('GET',url, false)
 
 
         //получаем значение инпутов(без картинки)
@@ -152,15 +146,11 @@
         let container = document.getElementById('divOutput'); 
         let template = document.getElementById('message-temp').innerHTML;
         container.innerHTML = "";
-        console.log(container);
             for(let i = 0; i < dbarr.length; i++){
-                console.log('цикл пошёл');
                 container.innerHTML += template.replace('---username',dbarr[i]['title'])
                                     .replace('---message',dbarr[i]['description'])
-                console.log('цикл закончился');
             }
 
-        console.log(response);
 
     }
     window.onload = checkusername();
